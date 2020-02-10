@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Api.Shared\Api.Shared.csproj" />
+    <ProjectReference Include="..\Data.Products\Data.Products.csproj" />
+  </ItemGroup>
+
 
 </Project>
