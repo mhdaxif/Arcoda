@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Api.Shared\Api.Shared.csproj" />
-    <ProjectReference Include="..\Data.Products\Data.Products.csproj" />
+    <ProjectReference Include="..\Data.MusicStore\Data.MusicStore.csproj" />
   </ItemGroup>
 
 
