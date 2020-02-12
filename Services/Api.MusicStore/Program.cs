@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.MusicStore.Data;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,8 @@ namespace Api.MusicStore
 
                     var context = services.GetRequiredService<AppDbContext>();
                     context.Database.Migrate();
+
+                   Seed.Initialize(services).Wait();
                 }
 
                 host.Run();

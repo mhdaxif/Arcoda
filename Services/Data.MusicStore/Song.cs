@@ -11,7 +11,7 @@ namespace Data.MusicStore
         public string Name { get; set; }
         public string Brief { get; set; }
         public string Description { get; set; }
-        public string SongContent { get; set; }
+        public string SongContent { get; set; } // lyric
 
         public int? AlbumId { get; set; }
         public int? ArtistId { get; set; }
