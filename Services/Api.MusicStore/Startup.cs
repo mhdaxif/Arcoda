@@ -27,9 +27,11 @@ namespace Api.MusicStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // MSSQL server  
-            services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            //// MSSQL server  
+            //services.AddDbContext<AppDbContext>(options =>
+            //   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+           
+            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-musicstore"));
 
             services.AddControllers();
         }

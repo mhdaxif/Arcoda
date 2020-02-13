@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Api.MusicStore
 {
@@ -28,9 +29,13 @@ namespace Api.MusicStore
                     var services = scope.ServiceProvider;
 
                     var context = services.GetRequiredService<AppDbContext>();
-                    context.Database.Migrate();
 
-                   Seed.Initialize(services).Wait();
+                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    {
+                        context.Database.Migrate();
+                    }
+
+                    Seed.Initialize(services).Wait();
                 }
 
                 host.Run();
@@ -47,7 +52,14 @@ namespace Api.MusicStore
                 .UseStartup<Startup>()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
-                .Build();
+                 .UseSerilog((builderContext, config) =>
+                 {
+                     config
+                         .MinimumLevel.Information()
+                         .Enrich.FromLogContext()
+                         .WriteTo.Console();
+                 })
+                 .Build();
 
         private static IConfiguration GetConfiguration()
         {

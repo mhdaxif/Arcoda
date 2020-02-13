@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Api.BookMark
 {
@@ -28,7 +29,11 @@ namespace Api.BookMark
                     var services = scope.ServiceProvider;
 
                     var context = services.GetRequiredService<AppDbContext>();
-                    context.Database.Migrate();
+
+                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    {
+                        context.Database.Migrate();
+                    }
 
                     Seed.Initialize(services).Wait();
                 }
@@ -47,6 +52,13 @@ namespace Api.BookMark
                 .UseStartup<Startup>()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
+                 .UseSerilog((builderContext, config) =>
+                 {
+                     config
+                         .MinimumLevel.Information()
+                         .Enrich.FromLogContext()
+                         .WriteTo.Console();
+                 })
                 .Build();
 
         private static IConfiguration GetConfiguration()
