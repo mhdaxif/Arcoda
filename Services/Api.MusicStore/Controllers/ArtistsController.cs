@@ -12,6 +12,6 @@ namespace Api.MusicStore.Controllers
 {
     public class ArtistsController : BaseController<AppDbContext, Artist>
     {
-        public ArtistsController(AppDbContext dbContext) : base(dbContext, dbContext.Artists) { }
+        public ArtistsController(AppDbContext dbContext, ILogger<ArtistsController> logger) : base(dbContext, dbContext.Artists) { }
     }
 }

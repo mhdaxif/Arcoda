@@ -10,6 +10,6 @@ namespace Api.MusicStore.Controllers
 {
     public class SongsController : BaseController<AppDbContext, Song>
     {
-        public SongsController(AppDbContext dbContext) : base(dbContext, dbContext.Songs) { }
+        public SongsController(AppDbContext dbContext, ILogger<SongsController> logger) : base(dbContext, dbContext.Songs) { }
     }
 }

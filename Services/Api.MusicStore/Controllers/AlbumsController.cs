@@ -12,6 +12,6 @@ namespace Api.MusicStore.Controllers
 {
     public class AlbumsController : BaseController<AppDbContext, Album>
     {
-        public AlbumsController(AppDbContext dbContext) : base(dbContext, dbContext.Albums) { }
+        public AlbumsController(AppDbContext dbContext, ILogger<AlbumsController> logger) : base(dbContext, dbContext.Albums) { }
     }
 }
