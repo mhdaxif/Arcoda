@@ -1,4 +1,4 @@
-﻿using Data.MusicStore;
+﻿using Data.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Data.BookMark
 {
-    public class User : Entity
+    public class ApplicationUser : Entity
     {
-        
+        public string Name { get; set; }
     }
 }

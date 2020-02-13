@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Data.Shared;
+using System.Collections.Generic;
 
 namespace Data.MusicStore
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.MusicStore
+namespace Data.Shared
 {
     public interface IEntity
     {
@@ -16,3 +16,4 @@ namespace Data.MusicStore
         public int Id { get; set; }
     }
 }
+ 

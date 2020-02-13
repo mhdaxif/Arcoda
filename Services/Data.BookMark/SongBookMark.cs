@@ -1,4 +1,4 @@
-﻿using Data.MusicStore;
+﻿using Data.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ namespace Data.BookMark
     public class SongBookMark : Entity
     {
         public int SongId { get; set; }
-        public int? UserId { get; set; }
+        public int? ApplicationUserId { get; set; }
 
         public Song Song { get; set; }
-        public User User { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

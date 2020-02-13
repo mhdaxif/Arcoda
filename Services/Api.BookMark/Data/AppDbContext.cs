@@ -1,4 +1,4 @@
-﻿using Data.MusicStore;
+﻿using Data.BookMark;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.MusicStore
+namespace Api.BookMark
 {
     public partial class AppDbContext : DbContext
     {
@@ -18,10 +18,11 @@ namespace Api.MusicStore
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<Artist> Artists { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        public DbSet<AlbumBookMark> AlbumBookMarks { get; set; }
+        public DbSet<SongBookMark> SongBookMarks { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Song> Songs { get; set; }
+        public DbSet<Album> Albums { get; set; }
     }
 
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
@@ -29,7 +30,7 @@ namespace Api.MusicStore
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=arcoda-musicstore;Integrated Security=True;", b => b.MigrationsAssembly("Api.MusicStore"));
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=arcoda-bookmarks;Integrated Security=True;", b => b.MigrationsAssembly("Api.BookMark"));
 
             return new AppDbContext(optionsBuilder.Options);
         }
