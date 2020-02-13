@@ -1,0 +1,16 @@
+{
+  "ReRoutes": [
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/bookmark/{all}",
+      "DownstreamPathTemplate": "/api/{all}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "arcoda.bookmark",
+          "Port": 80
+        }
+      ]
+    }
+  ]
+}

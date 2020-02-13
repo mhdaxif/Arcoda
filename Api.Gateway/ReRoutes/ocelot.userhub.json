@@ -1,0 +1,16 @@
+{
+  "ReRoutes": [
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/userhub/{all}",
+      "DownstreamPathTemplate": "/api/{all}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "arcoda.userhub",
+          "Port": 80
+        }
+      ]
+    }
+  ]
+}

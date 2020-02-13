@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+ 
+  arcoda.bookmark:
+    image: arcoda-bookmark
+    build:
+      context: . 
+      dockerfile: Services/Api.BookMark/Dockerfile
+    env_file:
+      - common.env
+    ports:
+      - 5001:80
+    networks:
+      - services-network
+    
+  arcoda.musicstore:
+    image: arcoda-musicstore
+    build:
+      context: . 
+      dockerfile: Services/Api.MusicStore/Dockerfile
+    env_file:
+      - common.env
+    ports:
+      - 5002:80
+    networks:
+      - services-network
+             
+  arcoda.gateway:
+    image: arcoda-gateway
+    build:
+      context: .
+      dockerfile: Api.Gateway/Dockerfile
+    env_file:
+      - common.env
+    ports:
+      - 9000:80
+    networks:
+      - services-network
+    depends_on: 
+      - arcoda.bookmark
+      - arcoda.musicstore
+       
+networks:
+  services-network:
+    external: true

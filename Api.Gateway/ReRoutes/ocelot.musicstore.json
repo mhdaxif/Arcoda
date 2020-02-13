@@ -1,0 +1,16 @@
+{
+  "ReRoutes": [
+    {
+      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/musicstore/{all}",
+      "DownstreamPathTemplate": "/api/{all}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "arcoda.musicstore",
+          "Port": 80
+        }
+      ]
+    }
+  ]
+}

@@ -31,13 +31,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.MusicStore", "Services\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.MusicStore", "Services\Data.MusicStore\Data.MusicStore.csproj", "{0B6D0EAE-0753-4538-A915-3AB2F0D9D197}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.UnitTests", "Services\MusicStore.UnitTests\MusicStore.UnitTests.csproj", "{79CCFF39-ACD9-481E-8F31-616691ED6FF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicStore.UnitTests", "Services\MusicStore.UnitTests\MusicStore.UnitTests.csproj", "{79CCFF39-ACD9-481E-8F31-616691ED6FF5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookMark", "BookMark", "{2F102F34-E2D4-407F-9305-AA412C9055CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.BookMark", "Services\Api.BookMark\Api.BookMark.csproj", "{3BBBF27A-8D3F-408B-BB49-11B6656EDDCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.BookMark", "Services\Api.BookMark\Api.BookMark.csproj", "{3BBBF27A-8D3F-408B-BB49-11B6656EDDCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.BookMark", "Services\Data.BookMark\Data.BookMark.csproj", "{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.BookMark", "Services\Data.BookMark\Data.BookMark.csproj", "{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Gateway", "Api.Gateway\Api.Gateway.csproj", "{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{05B41749-46E0-42FA-8D87-52ACD17AB94F}"
+	ProjectSection(SolutionItems) = preProject
+		common.env = common.env
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +101,10 @@ Global
 		{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +125,7 @@ Global
 		{2F102F34-E2D4-407F-9305-AA412C9055CC} = {79D5E716-04D2-4B13-A7CC-AB17E3BB4A2B}
 		{3BBBF27A-8D3F-408B-BB49-11B6656EDDCE} = {2F102F34-E2D4-407F-9305-AA412C9055CC}
 		{56B1AA56-1BE3-4D70-A7E3-FB57E7DD10AB} = {2F102F34-E2D4-407F-9305-AA412C9055CC}
+		{653F2BB0-656B-4DBF-A1CF-97E3C8E9DBF0} = {79D5E716-04D2-4B13-A7CC-AB17E3BB4A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFC07B16-482C-4E86-A741-F1689AF9AC9B}
