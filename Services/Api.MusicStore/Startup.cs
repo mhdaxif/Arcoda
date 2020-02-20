@@ -34,6 +34,19 @@ namespace Api.MusicStore
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-musicstore"));
 
             services.AddControllers();
+
+            // Allow anything till prod
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .Build();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +58,7 @@ namespace Api.MusicStore
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("EnableCORS");
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

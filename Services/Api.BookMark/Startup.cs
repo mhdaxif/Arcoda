@@ -33,6 +33,19 @@ namespace Api.BookMark
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-bookmarks"));
 
             services.AddControllers();
+
+            // Allow anything till prod
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .Build();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +57,7 @@ namespace Api.BookMark
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("EnableCORS");
             app.UseRouting();
 
             app.UseAuthorization();
