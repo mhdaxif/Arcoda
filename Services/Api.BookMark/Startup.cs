@@ -37,13 +37,12 @@ namespace Api.BookMark
             // Allow anything till prod
             services.AddCors(options =>
             {
-                options.AddPolicy("EnableCORS", builder =>
+                services.AddCors(options =>
                 {
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .Build();
+                    options.AddPolicy("EnableCORS",
+                       builder => builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
                 });
             });
         }
@@ -56,10 +55,11 @@ namespace Api.BookMark
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseCors("EnableCORS");
+            //app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors("EnableCORS");
 
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

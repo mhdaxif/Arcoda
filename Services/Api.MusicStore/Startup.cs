@@ -34,17 +34,16 @@ namespace Api.MusicStore
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-musicstore"));
 
             services.AddControllers();
-
+             
             // Allow anything till prod
             services.AddCors(options =>
             {
-                options.AddPolicy("EnableCORS", builder =>
+                services.AddCors(options =>
                 {
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .Build();
+                    options.AddPolicy("EnableCORS",
+                       builder => builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
                 });
             });
         }
@@ -57,9 +56,10 @@ namespace Api.MusicStore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-            app.UseCors("EnableCORS");
+            //app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors("EnableCORS");
+
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
