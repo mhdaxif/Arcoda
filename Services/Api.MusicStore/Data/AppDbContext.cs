@@ -29,7 +29,7 @@ namespace Api.MusicStore
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=arcoda-musicstore;Integrated Security=True;", b => b.MigrationsAssembly("Api.MusicStore"));
+            optionsBuilder.UseSqlite("DataSource=musicstore.db");
 
             return new AppDbContext(optionsBuilder.Options);
         }

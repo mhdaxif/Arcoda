@@ -2,7 +2,7 @@
 
 namespace Api.BookMark.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace Api.BookMark.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -24,7 +24,7 @@ namespace Api.BookMark.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -37,7 +37,7 @@ namespace Api.BookMark.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     Brief = table.Column<string>(nullable: true),
                     AlbumId = table.Column<int>(nullable: true)
@@ -58,7 +58,7 @@ namespace Api.BookMark.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     AlbumId = table.Column<int>(nullable: false),
                     ApplicationUserId = table.Column<int>(nullable: true)
                 },
@@ -84,7 +84,7 @@ namespace Api.BookMark.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     SongId = table.Column<int>(nullable: false),
                     ApplicationUserId = table.Column<int>(nullable: true)
                 },

@@ -30,8 +30,13 @@ namespace Api.MusicStore
             //// MSSQL server  
             //services.AddDbContext<AppDbContext>(options =>
             //   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-           
-            services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-musicstore"));
+
+            // SqlLite
+            services.AddDbContext<AppDbContext>(options =>
+               options.UseSqlite(Configuration["ConnectionStrings:sqllite-connection"]));
+
+            // In memory database
+            //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-bookmarks"));
 
             services.AddControllers();
              

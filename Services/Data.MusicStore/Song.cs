@@ -10,6 +10,7 @@ namespace Data.MusicStore
     public partial class Song : Entity
     {
         public string Name { get; set; }
+        public bool IsPremium { get; set; }
         public string Brief { get; set; }
         public string Description { get; set; }
         public string SongContent { get; set; } // lyric
