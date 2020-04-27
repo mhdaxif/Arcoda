@@ -3,8 +3,9 @@ version: '3.4'
 services:
  
   arcoda.bookmark:
-    image: arcoda-bookmark
-    build:
+    container_name: arcoda-bookmark
+    image: arcoda-bookmark:rc1
+    build: 
       context: . 
       dockerfile: Services/Api.BookMark/Dockerfile
     env_file:
@@ -15,7 +16,8 @@ services:
       - services-network
     
   arcoda.musicstore:
-    image: arcoda-musicstore
+    container_name: arcoda-musicstore
+    image: arcoda-musicstore:rc1
     build:
       context: . 
       dockerfile: Services/Api.MusicStore/Dockerfile
@@ -27,7 +29,8 @@ services:
       - services-network
              
   arcoda.gateway:
-    image: arcoda-gateway
+    container_name: arcoda-gateway
+    image: arcoda-gateway:rc1
     build:
       context: .
       dockerfile: Api.Gateway/Dockerfile

@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: arcoda-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: arcoda-musicstore-service 
+          servicePort: http
+      - path: /bm
+        backend:
+          serviceName: arcoda-bookmark-service
+          servicePort: http
+  - host: asif
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: arcoda-bookmark-service
+          servicePort: http
+  - host: witline
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rxjs-app-service
+          servicePort: http
+      - path: /rx
+        backend:
+          serviceName: rxjs-app-service
+          servicePort: http
+          

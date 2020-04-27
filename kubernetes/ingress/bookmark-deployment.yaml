@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcoda-bookmark-deployment
+  labels:
+    app: arcoda-bookmark
+spec:
+  selector:
+    matchLabels:
+      app: arcoda-bookmark
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: arcoda-bookmark
+    spec:
+      containers:
+      - name: arcoda-bookmark
+        image: arcoda-bookmark:rc1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "250m"
+          requests:
+            memory: 128Mi
+            cpu: "80m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: arcoda-bookmark-service
+spec:
+  selector:
+    app: arcoda-bookmark
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000 # Default port for image
