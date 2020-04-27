@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rxjs-app-deployment
+  labels:
+    app: rxjs-app
+spec:
+  selector:
+    matchLabels:
+      app: rxjs-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: rxjs-app
+    spec:
+      containers:
+      - name: rxjs-app
+        image: rxjs-search:v1
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "250m"
+          requests:
+            memory: 128Mi
+            cpu: "80m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rxjs-app-service
+spec:
+  selector:
+    app: rxjs-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80 # Default port for image
