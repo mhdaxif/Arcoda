@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: example-service
+  name: postgres-ingress
   annotations:
-    kubernetes.io/ingress.class: "traefik"
+    kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
     #traefik.ingress.kubernetes.io/redirect-entry-point: https
     #traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
   rules:
-  - host: asif
+  - host: pg
     http:
       paths:
       - path: /
         backend:
-          serviceName: example-service
-          servicePort: 80   
+          serviceName: postgres-service
+          servicePort: 5432

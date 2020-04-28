@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-deploy
+  name: clienthub-deploy
   labels:
-    app: example-app
+    app: clienthub-app
   annotations:
 spec:
   selector:
     matchLabels:
-      app: example-app
+      app: clienthub-app
   replicas: 2
   strategy:
     type: RollingUpdate
@@ -18,18 +18,21 @@ spec:
   template:
     metadata:
       labels:
-        app: example-app
+        app: clienthub-app
     spec:
       containers:
-      - name: example-app
-        image: aimvector/python:1.0.0
-        imagePullPolicy: Always
+      - name: clienthub-app
+        image: apiclienthub:rc1 #docker_registry/imagename:tag
+      #  imagePullPolicy: Always
+        env:
+        - name: DB_NAME
+          value: clienthub
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         # livenessProbe:
         #   httpGet:
         #     path: /status
-        #     port: 5000
+        #     port: 80
         #   initialDelaySeconds: 3
         #   periodSeconds: 3
         resources:
@@ -47,7 +50,7 @@ spec:
       volumes:
       - name: secret-volume
         secret:
-          secretName: mysecret
+          secretName: witline-secret
       - name: config-volume
         configMap:
-          name: example-config #name of our configmap object
+          name: witline-config #name of our configmap object

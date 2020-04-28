@@ -1,10 +1,17 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: example-config
+  name: witline-config
 data:
   config.json: |
     {
-      "environment" : "dev"
+      "ASPNETCORE_ENVIRONMENT" : "Development",
+      "ASPNETCORE_URLS": "http://0.0.0.0:80",
+      "DB_HOST": "postgres",
+      "DB_PASS": "pgadmin",
+      "API_KEY": "1234567890123456",
+      "RABBITMQ_DEFAULT_HOST"="rabbitmq"
+      "RABBITMQ_DEFAULT_USER"="radmin"
+      "RABBITMQ_DEFAULT_PASS"="123r54s"
     }
-# kubectl create configmap example-config --from-file ./golang/configs/config.json
+# todo: move sensitive data to secrect, (apikey, dbpass, dbhot)

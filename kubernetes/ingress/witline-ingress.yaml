@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: witline-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    #traefik.ingress.kubernetes.io/redirect-entry-point: https
+    #traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+  - host: clienthub
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: clienthub-service
+          servicePort: 80 
+  - host: categorymanagement
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: categorymanagement-service
+          servicePort: 80
+  - host: marketplace
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: marketplace-service
+          servicePort: 80
