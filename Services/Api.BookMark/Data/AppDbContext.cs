@@ -30,8 +30,9 @@ namespace Api.BookMark
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlite("DataSource=bookmark.db");
+            //optionsBuilder.UseSqlite("DataSource=bookmark.db");
             //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=arcoda-bookmarks;Integrated Security=True;", b => b.MigrationsAssembly("Api.BookMark"));
+            optionsBuilder.UseNpgsql("Host=localhost;Database=arcoda-bookmark;Username=postgres;Password=pgadmin;port=5433", b => b.MigrationsAssembly("Api.BookMark"));
 
             return new AppDbContext(optionsBuilder.Options);
         }
