@@ -7,7 +7,7 @@ metadata:
 data:
   POSTGRES_DB: postgresdb
   POSTGRES_USER: postgresadmin
-  POSTGRES_PASSWORD: pgadmin
+  POSTGRES_PASSWORD: admin123
 
   # psql -h localhost -U postgresadmin --password -p 5444 postgresdb
   # psql -h localhost -U postgresadmin -p 5444 postgres
