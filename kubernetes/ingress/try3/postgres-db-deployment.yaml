@@ -17,7 +17,7 @@ spec:
         tier: postgres
     spec:                                         # The spec for the containers that will be run inside the Pods in this deployment
       containers:
-        - image: postgres:latest                  # The container image
+        - image: postgres:12.2 # postgres:latest                  # The container image
           name: postgres
           imagePullPolicy: "IfNotPresent"
           envFrom:                                # Get the environmental variables from a secret file whose name is "postgres-secret" 
