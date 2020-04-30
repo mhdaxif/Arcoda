@@ -29,7 +29,9 @@ namespace Api.MusicStore
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlite("DataSource=musicstore.db");
+            // optionsBuilder.UseSqlite("DataSource=musicstore.db");
+          // optionsBuilder.UseNpgsql("Host=pg;Database=arcoda-musicstore;Username=postgres;Password=pgadmin;port=5433", b => b.MigrationsAssembly("Api.musicstore"));
+            optionsBuilder.UseNpgsql("Host=pg;Database=arcoda-musicstore;Username=postgres;Password=pgadmin;", b => b.MigrationsAssembly("Api.MusicStore"));
 
             return new AppDbContext(optionsBuilder.Options);
         }

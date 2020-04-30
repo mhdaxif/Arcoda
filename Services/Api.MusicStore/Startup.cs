@@ -31,15 +31,19 @@ namespace Api.MusicStore
             //services.AddDbContext<AppDbContext>(options =>
             //   options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            // SqlLite
-            services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlite(Configuration["ConnectionStrings:sqllite-connection"]));
+            // // SqlLite
+            // services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlite(Configuration["ConnectionStrings:sqllite-connection"]));
 
             // In memory database
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-bookmarks"));
 
+            // Add Postgress
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(Configuration["ConnectionStrings:postgres-connection"]));
+
             services.AddControllers();
-             
+
             // Allow anything till prod
             services.AddCors(options =>
             {
