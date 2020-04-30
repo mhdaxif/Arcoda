@@ -1,27 +1,27 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: postgres-deploy
+  name: pg-deploy
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: postgres
+        app: pg
     spec:
       containers:
-        - name: postgres
+        - name: pg
           image: postgres:12.2
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
           envFrom:
             - configMapRef:
-                name: postgres-config
+                name: pg-config
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgredb
+              name: pgdb
       volumes:
-        - name: postgredb
+        - name: pgdb
           persistentVolumeClaim:
-            claimName: postgres-pv-claim
+            claimName: pg-pv-claim

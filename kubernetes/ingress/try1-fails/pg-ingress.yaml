@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: postgres-ingress
+  name: pg-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
@@ -14,5 +14,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: postgres-service
+          serviceName: pg-service
           servicePort: 5432
