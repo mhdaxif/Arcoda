@@ -9,24 +9,17 @@ metadata:
     #traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
   rules:
-  - host: clienthub
+  - host: bm
     http:
       paths:
       - path: /
         backend:
-          serviceName: clienthub-service
+          serviceName: bookmark-service
           servicePort: 80 
-  - host: categorymanagement
+  - host: ms
     http:
       paths:
       - path: /
         backend:
-          serviceName: categorymanagement-service
-          servicePort: 80
-  - host: marketplace
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: marketplace-service
+          serviceName: musicstore-service
           servicePort: 80

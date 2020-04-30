@@ -41,6 +41,10 @@ namespace Api.BookMark
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(Configuration["ConnectionStrings:postgres-connection"]));
 
+            // // Add Postgress
+            // services.AddDbContext<AppDbContext>(options =>
+            //     options.UseNpgsql(ConnectionString));
+
             services.AddControllers();
 
             // Allow anything till prod
@@ -75,6 +79,11 @@ namespace Api.BookMark
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private string ConnectionString
+        {
+            get { return string.Format("Host={0};Database={1};Username={2};Password={3}", Configuration["DB_HOST"], Configuration["POSTGRES_DB"], Configuration["POSTGRES_USER"], Configuration["POSTGRES_PASSWORD"]); }
         }
     }
 }

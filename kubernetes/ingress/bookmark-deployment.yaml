@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: bookmark-app
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -22,19 +22,12 @@ spec:
     spec:
       containers:
       - name: bookmark-app
-        image: arcoda-bookmark:rc1 #docker_registry/imagename:tag
-      #  imagePullPolicy: Always
+        image: arcoda-bookmark:rc1  
         env:
         - name: DB_NAME
           value: bookmark
         ports:
         - containerPort: 80
-        # livenessProbe:
-        #   httpGet:
-        #     path: /status
-        #     port: 80
-        #   initialDelaySeconds: 3
-        #   periodSeconds: 3
         resources:
           requests:
             memory: "64Mi"
@@ -42,15 +35,7 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-        # volumeMounts:
-        # - name: secret-volume
-        #   mountPath: /secrets/
-        # - name: config-volume
-        #   mountPath: /configs/
-      # volumes:
-      # - name: secret-volume
-      #   secret:
-      #     secretName: witline-secret
-      # - name: config-volume
-      #   configMap:
-      #     name: witline-config #name of our configmap object
+      volumes:
+      - name: config-volume
+        configMap:
+          name: pg-config 
