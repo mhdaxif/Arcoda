@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: musicstore-deploy
+  name: bookmark-deploy
   labels:
-    app: musicstore-app
+    app: bookmark-app
   annotations:
 spec:
   selector:
     matchLabels:
-      app: musicstore-app
-  replicas: 1
+      app: bookmark-app
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app: musicstore-app
+        app: bookmark-app
     spec:
       containers:
-      - name: musicstore-app
-        image: arcoda-musicstore:rc1  
+      - name: bookmark-app
+        image: arcoda-bookmark:rc1  
         env:
         - name: DB_NAME
-          value: musicstore
+          value: bookmark
         ports:
         - containerPort: 80
         resources:

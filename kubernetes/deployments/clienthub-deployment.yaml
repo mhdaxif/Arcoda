@@ -1,56 +1,56 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: clienthub-deploy
-  labels:
-    app: clienthub-app
-  annotations:
-spec:
-  selector:
-    matchLabels:
-      app: clienthub-app
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-  template:
-    metadata:
-      labels:
-        app: clienthub-app
-    spec:
-      containers:
-      - name: clienthub-app
-        image: apiclienthub:rc1 #docker_registry/imagename:tag
-      #  imagePullPolicy: Always
-        env:
-        - name: DB_NAME
-          value: clienthub
-        ports:
-        - containerPort: 80
-        # livenessProbe:
-        #   httpGet:
-        #     path: /status
-        #     port: 80
-        #   initialDelaySeconds: 3
-        #   periodSeconds: 3
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
-        volumeMounts:
-        - name: secret-volume
-          mountPath: /secrets/
-        - name: config-volume
-          mountPath: /configs/
-      volumes:
-      - name: secret-volume
-        secret:
-          secretName: witline-secret
-      - name: config-volume
-        configMap:
-          name: witline-config #name of our configmap object
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: clienthub-deploy
+#   labels:
+#     app: clienthub-app
+#   annotations:
+# spec:
+#   selector:
+#     matchLabels:
+#       app: clienthub-app
+#   replicas: 2
+#   strategy:
+#     type: RollingUpdate
+#     rollingUpdate:
+#       maxSurge: 1
+#       maxUnavailable: 0
+#   template:
+#     metadata:
+#       labels:
+#         app: clienthub-app
+#     spec:
+#       containers:
+#       - name: clienthub-app
+#         image: apiclienthub:rc1 #docker_registry/imagename:tag
+#       #  imagePullPolicy: Always
+#         env:
+#         - name: DB_NAME
+#           value: clienthub
+#         ports:
+#         - containerPort: 80
+#         # livenessProbe:
+#         #   httpGet:
+#         #     path: /status
+#         #     port: 80
+#         #   initialDelaySeconds: 3
+#         #   periodSeconds: 3
+#         resources:
+#           requests:
+#             memory: "64Mi"
+#             cpu: "50m"
+#           limits:
+#             memory: "256Mi"
+#             cpu: "500m"
+#         volumeMounts:
+#         - name: secret-volume
+#           mountPath: /secrets/
+#         - name: config-volume
+#           mountPath: /configs/
+#       volumes:
+#       - name: secret-volume
+#         secret:
+#           secretName: witline-secret
+#       - name: config-volume
+#         configMap:
+#           name: witline-config #name of our configmap object
