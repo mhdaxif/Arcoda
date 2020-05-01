@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: witline-ingress
+  name: arcoda-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
@@ -23,3 +23,10 @@ spec:
         backend:
           serviceName: musicstore-service
           servicePort: 80
+  # - host: asif
+  #   http:
+  #     paths:
+  #     - path: /
+  #       backend:
+  #         serviceName: pg-service
+  #         servicePort: 5444

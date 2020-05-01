@@ -1,0 +1,80 @@
+# # Configmap
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: pgadmin-config
+#   labels:
+#     app: pg
+# data:
+#   PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#   PGADMIN_DEFAULT_PASSWORD: password
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: pgadmin-deploy
+#   labels:
+#     app: pgadmin-app
+#   annotations:
+# spec:
+#   selector:
+#     matchLabels:
+#       app: pgadmin-app
+#   replicas: 1 
+#   template:
+#     metadata:
+#       labels:
+#         app: pgadmin-app
+#     spec:
+#       containers:
+#       - name: pgadmin-app
+#         image: dpage/pgadmin4  
+#         envFrom:
+#           - configMapRef:
+#               name: pgadmin-config 
+#         ports:
+#         - containerPort: 80
+#         resources:
+#           requests:
+#             memory: "64Mi"
+#             cpu: "50m"
+#           limits:
+#             memory: "256Mi"
+#             cpu: "500m"
+#       volumes:
+#       - name: config-volume
+#         configMap:
+#           name: pgadmin-config 
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: pgadmin-service
+#   labels:
+#     app: pgadmin-app
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: pgadmin-app
+#   ports:
+#     - protocol: TCP
+#       name: http
+#       port: 80
+#       targetPort: 80
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: pgadmin-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+# spec:
+#   rules:
+#   - host: pg
+#     http:
+#       paths:
+#       - path: /
+#         backend:
+#           serviceName: pgadmin-service
+#           servicePort: 80 
