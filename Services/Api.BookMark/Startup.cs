@@ -37,14 +37,15 @@ namespace Api.BookMark
             // In memory database
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "arcoda-bookmarks"));
 
-            // Add Postgress
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(Configuration["ConnectionStrings:postgres-connection"]));
-
             // // Add Postgress
             // services.AddDbContext<AppDbContext>(options =>
-            //     options.UseNpgsql(ConnectionString));
+            //     options.UseNpgsql(Configuration["ConnectionStrings:postgres-connection"]));
 
+            // Add Postgress
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(ConnectionString));
+
+            Console.WriteLine("-------------------"+ ConnectionString +"-------------------");
             services.AddControllers();
 
             // Allow anything till prod

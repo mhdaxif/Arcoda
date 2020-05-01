@@ -50,7 +50,7 @@ namespace Api.BookMark
             WebHost.CreateDefaultBuilder(args)
                 .CaptureStartupErrors(false)
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5000")
+                //.UseUrls("http://*:5000")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(configuration)
                  .UseSerilog((builderContext, config) =>

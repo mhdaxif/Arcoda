@@ -23,9 +23,9 @@ spec:
       containers:
       - name: musicstore-app
         image: arcoda-musicstore:rc1  
-        env:
-        - name: DB_NAME
-          value: musicstore
+        envFrom:
+          - configMapRef:
+              name: arcoda-config
         ports:
         - containerPort: 80
         resources:
@@ -38,4 +38,4 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: pg-config 
+          name: arcoda-config 

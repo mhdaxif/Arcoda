@@ -23,9 +23,9 @@ spec:
       containers:
       - name: bookmark-app
         image: arcoda-bookmark:rc1  
-        env:
-        - name: DB_NAME
-          value: bookmark
+        envFrom:
+          - configMapRef:
+              name: arcoda-config
         ports:
         - containerPort: 80
         resources:
@@ -38,4 +38,4 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: pg-config 
+          name: arcoda-config 
